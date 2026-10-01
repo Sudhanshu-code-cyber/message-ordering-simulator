@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Message Ordering Simulator</title>
+
+    <link rel="stylesheet"
+          href="css/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
+    <header>
+
+        <h1>Message Ordering Simulator</h1>
+
+        <p>
+            Simulate FIFO, Causal and Total Message Ordering
+        </p>
+
+    </header>
+
+
+    <!-- =========================================
+         CONTROL PANEL
+    ========================================== -->
+
+    <section class="card">
+
+        <h2>Message Configuration</h2>
+
+        <div class="controls">
+
+
+            <!-- Algorithm -->
+
+            <div class="input-group">
+
+                <label for="algorithm">
+                    Ordering Algorithm
+                </label>
+
+                <select id="algorithm">
+
+                    <option value="lamport">
+                        Lamport Ordering
+                    </option>
+
+                    <option value="fifo">
+                        FIFO Ordering
+                    </option>
+
+                    <option value="causal">
+                        Causal Ordering
+                    </option>
+
+                    <option value="total">
+                        Total Ordering
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Sender -->
+
+            <div class="input-group">
+
+                <label for="sender">
+                    Sender
+                </label>
+
+                <select id="sender">
+
+                    <option value="P1">P1</option>
+                    <option value="P2">P2</option>
+                    <option value="P3">P3</option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Receivers -->
+
+            <div class="input-group receiver-group">
+
+                <label for="receivers">
+                    Receivers
+                </label>
+
+                <select id="receivers"
+                        multiple>
+
+                    <option value="P1">
+                        P1
+                    </option>
+
+                    <option value="P2">
+                        P2
+                    </option>
+
+                    <option value="P3">
+                        P3
+                    </option>
+
+                </select>
+
+                <small>
+                    Hold Ctrl and select multiple processes
+                </small>
+
+            </div>
+
+
+            <!-- Message -->
+
+            <div class="input-group">
+
+                <label for="messageText">
+                    Message
+                </label>
+
+                <input
+                    type="text"
+                    id="messageText"
+                    placeholder="Enter message"
+                >
+
+            </div>
+
+
+        </div>
+
+
+        <!-- Buttons -->
+
+        <div class="button-area">
+
+            <button
+                class="send-button"
+                onclick="sendMessage()">
+
+                Send Message
+
+            </button>
+
+
+            <button
+                class="reset-button"
+                onclick="resetSimulation()">
+
+                Reset Simulation
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         PROCESS VIEW
+    ========================================== -->
+
+    <section class="card">
+
+        <h2>Process View</h2>
+
+
+        <div class="process-container">
+
+
+            <!-- P1 -->
+
+            <div class="process">
+
+                <div class="process-circle p1">
+                    P1
+                </div>
+
+                <div class="process-info">
+
+                    <strong>
+                        Lamport Clock
+                    </strong>
+
+                    <span id="clock-P1">
+                        0
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- P2 -->
+
+            <div class="process">
+
+                <div class="process-circle p2">
+                    P2
+                </div>
+
+                <div class="process-info">
+
+                    <strong>
+                        Lamport Clock
+                    </strong>
+
+                    <span id="clock-P2">
+                        0
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- P3 -->
+
+            <div class="process">
+
+                <div class="process-circle p3">
+                    P3
+                </div>
+
+                <div class="process-info">
+
+                    <strong>
+                        Lamport Clock
+                    </strong>
+
+                    <span id="clock-P3">
+                        0
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Message Flow -->
+
+        <div
+            id="messageFlow"
+            class="message-flow">
+
+            No messages yet
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         MESSAGE QUEUE
+    ========================================== -->
+
+    <section class="card">
+
+        <h2>Message Queue</h2>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Sender</th>
+
+                        <th>Receivers</th>
+
+                        <th>Message</th>
+
+                        <th>Lamport</th>
+
+                        <th>FIFO Seq.</th>
+
+                        <th>Vector Clock</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="messageTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         ORDERING RESULT
+    ========================================== -->
+
+    <section class="card result-card">
+
+        <h2>Ordering Result</h2>
+
+
+        <p>
+
+            Selected Algorithm:
+
+            <strong id="selectedAlgorithm">
+                Lamport Ordering
+            </strong>
+
+        </p>
+
+
+        <p class="result-label">
+            Delivery Order
+        </p>
+
+
+        <div
+            id="deliveryOrder"
+            class="delivery-order">
+
+            No messages
+
+        </div>
+
+
+        <div
+            id="status"
+            class="status">
+
+            Waiting for messages...
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         HAPPENED-BEFORE RESULT
+    ========================================== -->
+
+    <section class="card">
+
+        <h2>Happened-Before Relationships</h2>
+
+
+        <div
+            id="causalRelations"
+            class="causal-relations">
+
+            No causal relationships yet.
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer>
+
+        <p>
+            Message Ordering Simulator |
+            Distributed Computing Project
+        </p>
+
+    </footer>
+
+</div>
+
+
+<script src="js/app.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+// ======================================================
+// MESSAGE ORDERING SIMULATOR
+// ======================================================
+//
+// Algorithms implemented:
+//
+// 1. Lamport Logical Clock
+// 2. FIFO Ordering
+// 3. Vector Clock
+// 4. Happened-Before Relation
+// 5. Causal Ordering
+// 6. Total Ordering
+//
+// Supports multicast:
+//
+// P1 -> P2 + P3
+//
+// One send event = One message
+//
+// ======================================================
+
+
+// ======================================================
+// PROCESS CONFIGURATION
+// ======================================================

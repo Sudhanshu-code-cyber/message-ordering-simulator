@@ -1,0 +1,452 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+
+    background: #f4f6f8;
+
+    color: #222;
+}
+
+
+.container {
+    width: 92%;
+
+    max-width: 1200px;
+
+    margin: 30px auto;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+header {
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+
+header h1 {
+    color: #173b65;
+
+    margin-bottom: 10px;
+}
+
+
+header p {
+    color: #666;
+
+    font-size: 16px;
+}
+
+
+/* =========================================
+   CARD
+========================================= */
+
+.card {
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 12px;
+
+    margin-bottom: 25px;
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+
+.card h2 {
+    color: #173b65;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================================
+   CONTROLS
+========================================= */
+
+.controls {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 20px;
+}
+
+
+.input-group {
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.input-group label {
+    font-weight: bold;
+
+    margin-bottom: 8px;
+}
+
+
+.input-group select,
+.input-group input {
+    width: 100%;
+
+    padding: 11px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 7px;
+
+    font-size: 15px;
+
+    background: white;
+}
+
+
+.receiver-group select {
+    min-height: 110px;
+}
+
+
+.receiver-group small {
+    margin-top: 6px;
+
+    color: #777;
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.button-area {
+    display: flex;
+
+    gap: 15px;
+
+    margin-top: 22px;
+}
+
+
+button {
+    padding: 12px 22px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+}
+
+
+.send-button {
+    background: #1976d2;
+}
+
+
+.send-button:hover {
+    background: #125ca5;
+}
+
+
+.reset-button {
+    background: #555;
+}
+
+
+.reset-button:hover {
+    background: #333;
+}
+
+
+/* =========================================
+   PROCESS VIEW
+========================================= */
+
+.process-container {
+    display: flex;
+
+    justify-content: space-around;
+
+    align-items: center;
+
+    margin: 30px 0;
+}
+
+
+.process {
+    text-align: center;
+}
+
+
+.process-circle {
+    width: 85px;
+
+    height: 85px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: white;
+
+    font-weight: bold;
+
+    font-size: 21px;
+
+    margin: auto auto 12px;
+}
+
+
+.p1 {
+    background: #1976d2;
+}
+
+
+.p2 {
+    background: #2e7d32;
+}
+
+
+.p3 {
+    background: #8e24aa;
+}
+
+
+.process-info {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.process-info span {
+    font-size: 20px;
+
+    font-weight: bold;
+
+    color: #173b65;
+}
+
+
+/* =========================================
+   MESSAGE FLOW
+========================================= */
+
+.message-flow {
+    text-align: center;
+
+    background: #f1f5f9;
+
+    border-radius: 8px;
+
+    padding: 25px;
+
+    font-size: 18px;
+
+    line-height: 1.8;
+}
+
+
+.message-flow .flow-message {
+    font-size: 15px;
+
+    color: #555;
+
+    margin-top: 8px;
+}
+
+
+/* =========================================
+   TABLE
+========================================= */
+
+.table-container {
+    overflow-x: auto;
+}
+
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 800px;
+}
+
+
+th,
+td {
+    border: 1px solid #ddd;
+
+    padding: 12px;
+
+    text-align: center;
+}
+
+
+th {
+    background: #173b65;
+
+    color: white;
+}
+
+
+tr:nth-child(even) {
+    background: #f7f7f7;
+}
+
+
+/* =========================================
+   DELIVERY ORDER
+========================================= */
+
+.result-label {
+    margin-top: 20px;
+
+    margin-bottom: 8px;
+
+    font-weight: bold;
+}
+
+
+.delivery-order {
+    background: #eef6ff;
+
+    border: 1px solid #c7ddf7;
+
+    border-radius: 8px;
+
+    padding: 18px;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    margin-bottom: 15px;
+
+    word-break: break-word;
+}
+
+
+/* =========================================
+   STATUS
+========================================= */
+
+.status {
+    padding: 15px;
+
+    border-radius: 7px;
+
+    background: #fff3cd;
+
+    color: #856404;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   CAUSAL RELATIONSHIPS
+========================================= */
+
+.causal-relations {
+    background: #f8f9fa;
+
+    border-radius: 8px;
+
+    padding: 18px;
+
+    line-height: 2;
+}
+
+
+.relation {
+    padding: 8px 0;
+
+    border-bottom: 1px solid #ddd;
+}
+
+
+.relation:last-child {
+    border-bottom: none;
+}
+
+
+.concurrent {
+    color: #666;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+    text-align: center;
+
+    color: #777;
+
+    padding: 15px;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .container {
+        width: 95%;
+    }
+
+
+    .controls {
+        grid-template-columns: 1fr;
+    }
+
+
+    .process-container {
+        flex-direction: column;
+
+        gap: 30px;
+    }
+
+
+    .button-area {
+        flex-direction: column;
+    }
+
+
+    button {
+        width: 100%;
+    }
+
+}
